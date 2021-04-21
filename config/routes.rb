@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :homes, only: [:index]
   
 
-  resources :users, only: [:show, :edit, :index]
+  resources :users, only: [:show, :edit, :index, :update]
   
 end 

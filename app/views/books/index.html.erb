@@ -1,8 +1,8 @@
 <h2>User info</h2>
   <div class="profile-container">
-  <%= image_tag('sample-author1.jpg') %>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
   <h3 class="profile-name"><%= @user.name %></h3>
-  
+
 </div>
 <h2>New book</h2>
 <%= form_with model:@book, local:true do |f| %>
@@ -17,16 +17,14 @@
 <h2>Books</h2>
 
  <table>
-  <% @users.each do |user| %>
   <% @books.each do |book| %>
     <tr>
-      <td><%= user.profile_image_id %></td>
-      <td><%= user.name %></td>
+      <td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %></td>
+      <td><%= book.user.name %></td>
       <td><%= book.title %></td>
       <td><%= book.body %></td>
-      
+
     </tr>
   <% end %>
-  <% end %>
- 
+
 </table>
