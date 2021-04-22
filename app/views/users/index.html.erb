@@ -1,36 +1,55 @@
-<h2>User info</h2>
-  <div class="profile-container">
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <h3 class="profile-name"><%= @user.name %></h3>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-4">
+    <h2>User info</h2>
+     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+     <table class="table table-striped">
+      <tbody>
+       <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+       </tr>
+       <tr>
+        <th>introdaction</th>
+        <th><%= @user.introduction %></th>
+       </tr>
+      </tbody>
+     </table>
+     
+      <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" do %>
+      <i class="fas fa-user-cog"></i>
+      <% end %>
 
+      <h2>New book</h2>
+       <%= form_with model:@book_new, local:true do |f| %>
+       <h4>Title</h4>
+        <div class><%= f.text_field :title %></div>
+       <h4>Option</h4>
+        <div class><%= f.text_area :body %></div>
+        <div><%= f.submit 'Create Book' %></div>
+       <% end %>
+ </div>
 
+  <div class="col-8">
+    <h2>Users</h2>
+    <table class="table table-striped">
+     <thead>
+      <tr>
+       <th>image</th>
+       <th>name</th>
+       <th></th>
+      </tr>
+     </thead>
+    <% @users.each do |u| %>
+     <tbody>
+      <tr>
+       <td> <%= attachment_image_tag u, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+       <td><%= u.name %></td>
+       <td><%= link_to "show", user_path(u.id) %></td>
+      </tr>
+     </tbody>
+    <% end %>
+    </table>
+  </div>
+ </div>
 </div>
-<h2>New book</h2>
- <%= form_with model:@booknew, local:true do |f| %>
-  <h4>Title</h4>
-    <div class><%= f.text_field :title %></div>
-  <h4>Option</h4>
-    <div class><%= f.text_area :body %></div>
-    <div><%= f.submit 'Create Book' %></div>
- <% end %>
-
-
-<h2>Users</h2>
-<table>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @users.each do |u| %>
-   <tbody>
-     <tr>
-      <td> <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %></td>
-      <td><%= u.name %></td>
-      <td><%= link_to "show", user_path(u.id) %></td>
-     </tr>
-   </tbody>
-  <% end %>
-</table>
