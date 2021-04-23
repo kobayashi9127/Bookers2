@@ -21,7 +21,8 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-             <li class="nav-item"><%= link_to "Home", user_path(current_user.id), class: 'nav-link text-light' %></li>
+             
+             </i><li class="nav-item"><%= link_to "Home", user_path(current_user.id), class: 'nav-link text-light' %></li>
 
              <li class="nav-item"><%= link_to "Users", users_path, class: 'nav-link text-light' %></li>
 
@@ -42,7 +43,8 @@
       </div>
      </nav>
     </header>
-
+      <p class="notice"><%= notice %></p>
+      <P class="alert"><%= alert %></P>
     <main class="mb-auto">
     <%= yield %>
     </main>
