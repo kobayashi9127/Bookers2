@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container">
  <div class="row">
-  <div class="col-4">
+  <div class="col-md-3">
     <h2>User info</h2>
      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
      <table class="table table-striped">
@@ -15,10 +15,9 @@
        </tr>
       </tbody>
      </table>
-      <% if @user == current_user %>
-      <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" do %>
+     
+      <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" do %>
       <i class="fas fa-user-cog"></i>
-      <% end %>
       <% end %>
 
     <h2>New book</h2>
@@ -28,7 +27,7 @@
     <%= message %>
     <% end %>
     <% end %>
-     <%= form_with model:@book_new, local:true do |f| %>
+     <%= form_with model:@books, local:true do |f| %>
      <h4>Title</h4>
       <div class><%= f.text_field :title %></div>
      <h4>Option</h4>
@@ -37,7 +36,7 @@
      <% end %>
   </div>
 
-  <div class="col-8">
+  <div class="col-md-8 offset-md-1">
     <h2>Books</h2>
      <table class="table table-striped">
       <thead>
@@ -50,7 +49,11 @@
       <% @book.each do |book| %>
        <tbody>
         <tr>
-         <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+         <td>
+          <%= link_to user_path(book.user) do %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+          <% end %>
+          </td>
          <td><%= link_to book.title, book_path(book.id) %></td>
          <td><%= book.body %></td>
         </tr>

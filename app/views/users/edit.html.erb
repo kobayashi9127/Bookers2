@@ -1,3 +1,9 @@
+<% if @user.errors.any? %>
+<%= @user.errors.count %>件の error が発生しました
+<% @user.errors.full_messages.each do |message| %>
+<%= message %>
+<% end %>
+<% end %>
 <div class="container-fluid">
  <div class="row">
   <div class="col-12">
@@ -10,7 +16,7 @@
    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
   
    <div><label for="inputintroduction">introduction</label></div>
-   <%= f.text_area :introduction %></div>
+   <%= f.text_area :introduction %>
   
    <div><%= f.submit "Update User" %></div>
    <% end %>

@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container">
  <div class="row">
-  <div class="col-4">
+  <div class="col-md-3">
     <h2>User info</h2>
      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
      <table class="table table-striped">
@@ -28,7 +28,7 @@
       <%= message %>
       <% end %>
       <% end %>
-       <%= form_with model:@book_new, local:true do |f| %>
+       <%= form_with model:@book, local:true do |f| %>
        <h4>Title</h4>
         <div class><%= f.text_field :title %></div>
        <h4>Option</h4>
@@ -37,7 +37,7 @@
        <% end %>
  </div>
 
-  <div class="col-8">
+  <div class="col-md-8 offset-md-1">
     <h2>Users</h2>
     <table class="table table-striped">
      <thead>
@@ -50,9 +50,13 @@
     <% @users.each do |u| %>
      <tbody>
       <tr>
-       <td> <%= attachment_image_tag u, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+       <td>
+        <%= link_to user_path(u.id) do %>
+        <%= attachment_image_tag u, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <% end %>
+       </td>
        <td><%= u.name %></td>
-       <td><%= link_to "show", user_path(u.id) %></td>
+       <td><%= link_to "Show", user_path(u.id) %></td>
       </tr>
      </tbody>
     <% end %>

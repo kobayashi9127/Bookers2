@@ -6,9 +6,12 @@
       <p> about various books!</p>
 </div> 
 
-      <%= link_to new_user_session_path, class: "btn btn-info btn-block" do %>
-       <P>Lign in</P>
-      <% end %>
-      <%= link_to new_user_registration_path, class: "btn btn-success btn-block" do %>
-       <P>Sign up</P>
-      <% end %>
+<div class="btn-wrapper col-10 mx-auto">
+    <div class="row">
+      <%= link_to 'Log in', new_user_session_path, class: "btn btn-info btn-block" %>
+    </div>
+      
+    <div class="row">
+      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-success btn-block" %>
+    </div>
+</div>
